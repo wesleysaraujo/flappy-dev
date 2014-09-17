@@ -1,18 +1,15 @@
-//Inicializa o phaser, e cria define a tela do game
+//Init Phaser
 var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'gameDiv');
 
-//Cria seu estado principal onde rolará o game
+//Main state of game
 
 var mainState = {
 
 	preload: function(){
-
-		//Esta função é executada no inicio
-		//Enquanto o game carrega os assets
-
+		//Background color of stage app
 		game.stage.backgroundColor = '#000';
 
-		//Carrega o passaro sprit
+		//Load angular bird sprite
 		game.load.image('bird', 'img/angularjs.png');
 		// Load pipe
 		game.load.image('pipe', 'img/pipe.png');
@@ -22,17 +19,17 @@ var mainState = {
 	},
 
 	create: function(){
-		//Sistema de fisica
+		//System of physic
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		// Display com o passaro na tela
 		this.bird = this.game.add.sprite(10, 0, 'bird');
 
-		//Adiciona gravidade para o passaro cair
+		// Add gravity for Angular Bird down
 		game.physics.arcade.enable(this.bird);
 		this.bird.body.gravity.y = 1000;
 
-		// Chama a função de jump com a tecla de espaço
+		// Call function on tap screen
 		var tap = this.game.input.onTap;
 		tap.add(this.jump, this);
 
@@ -84,8 +81,7 @@ var mainState = {
 	},
 
 	update: function(){
-		//Essa função é chamad 60x por segundo
-		//E contem a lógica do jogo
+		// This function is call 60x for second
 
 		if (this.bird.inWorld == false) {
 			this.restartGame();
@@ -116,7 +112,7 @@ var mainState = {
 		}, this);
 	},
 
-	// Cria o pulo do passaro
+	// Create jump angular
 	jump: function(){
 
 		if (this.bird.alive == false)
@@ -144,7 +140,7 @@ var mainState = {
 
 //game.add.tween(this.bird).to({angle:-20}, 100).start();
 
-//Adiciono o main e starto o objet
+// Define main and start main
 
 game.state.add('main', mainState);
 game.state.start('main');
