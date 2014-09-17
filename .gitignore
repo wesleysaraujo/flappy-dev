@@ -1,2 +1,2 @@
-/platforms/android
+platforms/android/*
 /www/bower_components/
